@@ -1,0 +1,16 @@
+<button (click)="increase()"
+        class="fz-60 m-20 p-20">+1
+</button>
+<button (click)="decrease()"
+        [disabled]="cannotDecrease"
+        class="fz-60 m-20 p-20">-1
+</button>
+<button (click)="clear()"
+        [disabled]="cannotDecrease"
+        class="fz-60 m-20 p-20">=0
+</button>
+
+<p class="fz-60">Counter = {{ counter }}</p>
+<p *ngIf="updatedAt" class="fz-60">
+  Updated at {{ updatedAt | date: 'yyyy/mm/dd HH:mm:ss' }}
+</p>
