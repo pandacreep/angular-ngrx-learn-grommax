@@ -6,13 +6,14 @@ import {
   createSelector,
   MetaReducer
 } from '@ngrx/store';
+import {counterReducer, CounterState, initialState} from './counter';
 
 export interface State {
-
+  counter: CounterState;
 }
 
 export const reducers: ActionReducerMap<State> = {
-
+  counter: counterReducer
 };
 
 

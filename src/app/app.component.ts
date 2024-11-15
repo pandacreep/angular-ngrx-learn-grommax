@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import {Store} from '@ngrx/store';
+import {clear, countSelector, decrease, increase} from './reducers/counter';
+import {map} from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -7,25 +10,27 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'ngrx-grom';
-  counter = 0;
   updatedAt?: number;
+  count$;
+  cannotDecrease$;
 
-  get cannotDecrease() {
-    return this.counter <= 0;
+  constructor(private store: Store) {
+    this.count$ = this.store.select(countSelector);
+    this.cannotDecrease$ = this.count$.pipe(map(count => count <= 0));
   }
 
   increase() {
     this.updatedAt = Date.now();
-    this.counter++;
+    this.store.dispatch(increase());
   }
 
   decrease() {
     this.updatedAt = Date.now();
-    this.counter--;
+    this.store.dispatch(decrease());
   }
 
   clear() {
     this.updatedAt = Date.now();
-    this.counter = 0;
+    this.store.dispatch(clear());
   }
 }
