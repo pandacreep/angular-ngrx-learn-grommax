@@ -11,6 +11,6 @@
 </button>
 
 <p class="fz-60">Counter = {{ count$ | async }}</p>
-<p *ngIf="updatedAt" class="fz-60">
-  Updated at {{ updatedAt | date: 'yyyy/mm/dd HH:mm:ss' }}
+<p *ngIf="updatedAt$ | async" class="fz-60">
+  Updated at {{ updatedAt$ | async | date: 'yyyy/mm/dd HH:mm:ss' }}
 </p>
